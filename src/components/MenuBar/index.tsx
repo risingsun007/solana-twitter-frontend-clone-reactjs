@@ -1,6 +1,8 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { AlternateEmail } from 'styled-icons/material-outlined';
+import Modal from 'react-modal';
 import Button from '../Button';
+import NewTweet from '../NewTweet';
 
 import {
   Container,
@@ -21,6 +23,7 @@ import {
 } from './styles';
 
 const MenuBar: React.FC = () => {
+  let [showNewTweet, setShowNewTweet] = useState(false);
   return (
     <Container>
       <Topside>
@@ -60,8 +63,12 @@ const MenuBar: React.FC = () => {
           <ProfileIcon />
           <span>Profile</span>
         </MenuButton>
-
-        <Button>
+        {
+          showNewTweet ?
+            <NewTweet onClick={() => { setShowNewTweet(false) }} message="hellodkdk" showNewTweet={showNewTweet} />
+            : ''
+        }
+        <Button onClick={() => { setShowNewTweet(true) }}>
           <span>Tweet</span>
         </Button>
       </Topside>

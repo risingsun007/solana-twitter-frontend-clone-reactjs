@@ -6,8 +6,79 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
 
-    color: var(--white);
+    @media (prefers-color-scheme: dark) {
+      background: black;
+      color: white;
+    }
+
+    @media (prefers-color-scheme: light) {
+      background: white;
+      color: black;
+    }
+  
   }
+  .Modal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: papayawhip;
+  }
+
+  .modal {
+    @media (prefers-color-scheme: dark) {
+      background: black;
+      color: white;
+    }
+    @media (prefers-color-scheme: light) {
+      background: white;
+      color: black;
+    }
+    
+  }
+  
+  .modal-outlay {
+    background: rgba(200, 200, 200, .5);
+  
+  }
+
+  .modal2 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
   html, body, #root {
     max-height: 100vh;
@@ -19,12 +90,10 @@ export default createGlobalStyle`
 
   *, button, input {
     border: 0;
-    background: none;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
   }
 
   html {
-    background: var(--primary);
   }
 
   :root {

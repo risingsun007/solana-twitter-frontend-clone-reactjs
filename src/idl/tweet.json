@@ -1,0 +1,154 @@
+{
+    "version": "0.1.0",
+    "name": "twitter",
+    "instructions": [
+      {
+        "name": "setupPlatform",
+        "accounts": [
+          {
+            "name": "tweet",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "user",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": []
+      },
+      {
+        "name": "writeTweet",
+        "accounts": [
+          {
+            "name": "tweet",
+            "isMut": true,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "message",
+            "type": "string"
+          },
+          {
+            "name": "userPublicKey",
+            "type": "publicKey"
+          }
+        ]
+      },
+      {
+        "name": "likeTweet",
+        "accounts": [
+          {
+            "name": "tweet",
+            "isMut": true,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "userLikingTweet",
+            "type": "publicKey"
+          }
+        ]
+      },
+      {
+        "name": "dislikeTweet",
+        "accounts": [
+          {
+            "name": "tweet",
+            "isMut": true,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "userDislikingTweet",
+            "type": "publicKey"
+          }
+        ]
+      }
+    ],
+    "accounts": [
+      {
+        "name": "Tweet",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "message",
+              "type": "string"
+            },
+            {
+              "name": "likes",
+              "type": "u8"
+            },
+            {
+              "name": "dislikes",
+              "type": "u8"
+            },
+            {
+              "name": "creator",
+              "type": "publicKey"
+            },
+            {
+              "name": "peopleWhoLiked",
+              "type": {
+                "vec": "publicKey"
+              }
+            },
+            {
+              "name": "peopleWhoDisliked",
+              "type": {
+                "vec": "publicKey"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "errors": [
+      {
+        "code": 6000,
+        "name": "CannotUpdateTweet",
+        "msg": "Tweet message cannot be updated2"
+      },
+      {
+        "code": 6001,
+        "name": "EmtpyMessage",
+        "msg": "Message cannot be empty"
+      },
+      {
+        "code": 6002,
+        "name": "ReachedMaxLikes",
+        "msg": "Cannot receive more than 5 likes"
+      },
+      {
+        "code": 6003,
+        "name": "ReachedMaxDislikes",
+        "msg": "Cannot receive more than 5 dislikes"
+      },
+      {
+        "code": 6004,
+        "name": "NotValidTweet",
+        "msg": "Cannot like a tweet without a valid message"
+      },
+      {
+        "code": 6005,
+        "name": "UserLikedTweet",
+        "msg": "User has already liked the tweet"
+      },
+      {
+        "code": 6006,
+        "name": "UserDislikedTweet",
+        "msg": "User has already disliked the tweet"
+      }
+    ]
+  }

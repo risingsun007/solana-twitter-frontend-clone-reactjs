@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-
-import data from '../../data.json';
+import React, { useEffect, useState } from 'react';
+import { UserType } from '../../constants';
+import { getTweets } from '../../api/SolanaWeb3';
+import data2 from '../../data.json'
 
 import {
   Container,
@@ -19,21 +20,37 @@ import {
   RetweetIcon,
   LikeIcon,
 } from './styles';
+import { Zzz } from 'styled-icons/remix-fill';
 
-interface UserType {
-  avatar: string;
-  author: string;
-  twitteruser: string;
-  posttime: string;
-  posttext: string;
-}
+
 
 interface PropsType {
   data?: Array<UserType>;
 }
 
+
 const Tweet: React.FC<PropsType> = () => {
   const [likeCounter, setLikeCounter] = useState(0);
+  const [data, setData] = useState<UserType[]>([]);
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      console.log("getTweets() is about to be called");
+      const result = await getTweets();
+      console.log("before set data")
+      console.log(JSON.stringify(result[0], null, 2));
+      let zz = [result[0]];
+      console.log("zz is: " + JSON.stringify(zz, null, 2));
+
+      console.log(`${typeof (zz)}`)
+
+      setData(result);
+      console.log("after set data")
+
+    };
+    fetchData();
+  }, []);
 
   return (
     <>

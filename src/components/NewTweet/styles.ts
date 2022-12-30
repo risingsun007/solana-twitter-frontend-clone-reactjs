@@ -6,7 +6,6 @@ export const Container2 = styled.div`
     width: min(601px, 100%);
     grid-template-columns:  12fr 31fr 50fr 1fr;
     grid-template-rows: 5fr 8fr 10fr 5fr 4fr;
-    background-color: white;
 `
 
 
@@ -122,6 +121,7 @@ export const customStyles : Modal.Styles = {
       outline: '0px',
       overflow: 'visible',  
       padding: '10px',  
+      background: 'var(--backColorScheme)',
   },
 };
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { PublicKey } from "@solana/web3.js";
 
 import Feed from '../Feed';
 
@@ -13,14 +14,64 @@ import {
   Followage,
 } from './styles';
 
+type PhantomEvent = "disconnect" | "connect" | "accountChanged";
+
+interface ConnectOpts {
+  onlyIfTrusted: boolean;
+}
+
+interface PhantomProvider {
+  connect: (opts?: Partial<ConnectOpts>) => Promise<{ publicKey: PublicKey }>;
+  disconnect: () => Promise<void>;
+  on: (event: PhantomEvent, callback: (args: any) => void) => void;
+  isPhantom: boolean;
+  _publicKey?: PublicKey;
+}
+
+type WindowWithSolana = Window & {
+  solana?: PhantomProvider;
+}
+
 const ProfilePage: React.FC = () => {
+  const [pubKey, setPubKey] = useState('');
+  const [provider, setProvider] = useState<PhantomProvider | null>(null);
+
+  useEffect(() => {
+    if ("solana" in window) {
+      const solWindow = window as WindowWithSolana;
+      console.log(`solana in window`)
+      if (solWindow?.solana?.isPhantom) {
+        console.log(`Phanton in window`)
+        setProvider(solWindow.solana);
+        const connectWallet = async () => {
+          const solWindow = window as WindowWithSolana;
+          if (solWindow?.solana?.isPhantom){
+            await solWindow.solana.connect({ onlyIfTrusted: false });
+            console.log(`connect result: ${JSON.stringify(solWindow.solana, null, 2)})}`);
+           
+            setPubKey(solWindow?.solana?._publicKey?.toString() || "Not Connected");
+          }
+        }
+        connectWallet();
+        console.log(`solana window info: ${JSON.stringify(solWindow.solana, null, 2)})}`)
+        // Attemp an eager connection
+        solWindow.solana.connect({ onlyIfTrusted: false });
+      } else {
+        console.log(`Phanton NOT in window`)
+      }
+    } else {
+      console.log(`solana not in window`)
+    }
+
+  }, []);
+
   return (
     <Container>
       <Banner>
         <Avatar>
           <img
-            src="https://avatars1.githubusercontent.com/u/53025782?s=400&u=f1ffa8eaccb8545222b7c642532161f11e74a03d&v=4"
-            alt="Elton Lazzarin"
+            src="../../avatar.png"
+            alt=""
           />
         </Avatar>
       </Banner>
@@ -28,25 +79,21 @@ const ProfilePage: React.FC = () => {
       <ProfileData>
         <EditButton outlined>Set up profile</EditButton>
 
-        <h1>Elton Lazzarin</h1>
-        <h2>@elton_lazzarin</h2>
+        <h1>{pubKey ? `Public Key: ${pubKey.slice(0,10)}...` : "TODO: Connect to Wallet Button"}</h1>
+        <h2>TODO associated name @...</h2>
 
         <p>
-          Developer at{' '}
-          {/* eslint-disable-next-line react/jsx-no-target-blank */}
-          <a href="https://www.linkedin.com/in/eltonlazzarin/" target="_blank">
-            @WordlLab
-          </a>
+          TODO: Insert BIO if available
         </p>
 
         <ul>
           <li>
             <LocationIcon />
-            São José do Rio Preto, Brazil
+            TODO: Insert Location if available
           </li>
           <li>
             <CakeIcon />
-            Born on May 13, 1989
+            TODO: Insert Birthday if available
           </li>
         </ul>
 

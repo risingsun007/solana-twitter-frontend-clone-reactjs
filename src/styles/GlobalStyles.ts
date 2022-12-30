@@ -26,7 +26,35 @@ export default createGlobalStyle`
     background-color: papayawhip;
   }
 
+  .modal3 {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: papayawhip;
+  }
+  .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  }
+
   .modal {
+    top: '5%',
+    margin: 'auto',
+    bottom: 'auto',
+    width: '40%',
+    height: '275px',
+    borderRadius: '20px',
+    outline: '0px',
+    overflow: 'visible',  
+    padding: '10px',  
+    background: "red",
+
     @media (prefers-color-scheme: dark) {
       background: black;
       color: white;
@@ -34,12 +62,13 @@ export default createGlobalStyle`
     @media (prefers-color-scheme: light) {
       background: white;
       color: black;
-    }
-    
+    } 
   }
   
-  .modal-outlay {
-    background: rgba(200, 200, 200, .5);
+  .zzzz {
+    background: green,
+    height: '10%',
+    width: '10%',
   
   }
 
@@ -108,5 +137,14 @@ export default createGlobalStyle`
     --twitter: #33a1f2;
     --twitter-dark-hover: #011017;
     --twitter-light-hover: #2c8ed6;
+    --backColorScheme: #000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root { --backColorScheme: black; }
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root { --backColorScheme: white; }
   }
 `;

@@ -23,7 +23,7 @@ import {
 } from './styles';
 
 const MenuBar: React.FC = () => {
-  let [showNewTweet, setShowNewTweet] = useState(false);
+  let [showNewTweet, setShowNewTweet] = useState(true);
   return (
     <Container>
       <Topside>

@@ -138,10 +138,12 @@ export default createGlobalStyle`
     --twitter-dark-hover: #011017;
     --twitter-light-hover: #2c8ed6;
     --backColorScheme: #000;
+    --modelOutlay: rgba(0, 0, 0, .4);
   }
 
   @media (prefers-color-scheme: dark) {
     :root { --backColorScheme: black; }
+    :root { --modelOutlay: rgba(200, 200, 200, .2)};
   }
 
   @media (prefers-color-scheme: light) {

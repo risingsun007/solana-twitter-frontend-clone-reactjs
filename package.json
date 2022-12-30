@@ -2,9 +2,6 @@
   "name": "twitter-clone-reactjs",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "16.16.0"
-  },
   "dependencies": {
     "@project-serum/anchor": "^0.26.0",
     "@solana/wallet-adapter-react": "^0.15.27",
@@ -14,9 +11,10 @@
     "@testing-library/user-event": "^7.1.2",
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
+    "@types/react": "^18.0.26",
     "@types/react-dom": "^16.9.0",
     "@types/react-modal": "^3.13.1",
+    "prop-types": "^15.8.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-is": "^18.2.0",

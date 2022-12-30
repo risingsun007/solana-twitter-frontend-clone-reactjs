@@ -46,7 +46,7 @@ const NewTweet: React.FC<NewTweetProps> = (props) => {
     const [pubKey, setPubKey] = useState<PublicKey | null>(null);
     const [doShow, setDoShow] = useState(false);
 
-    Modal.setAppElement('#root');
+    //Modal.setAppElement('#root');
 
     const [walletAddressTest, setWalletAddress] = useState('');
     const [copied, setCopied] = useState(false);
@@ -85,7 +85,7 @@ const NewTweet: React.FC<NewTweetProps> = (props) => {
             <Container2>
                 <CloseDiv onClick={() => { console.log("click close button handler button"); props.onClick() }}>x</CloseDiv>
                 <Avatar>
-                    <img src={require('../../assets/avatar.png')} alt="Avatar" />
+                    <img src="../../avatar.png" alt="Avatar" />
                 </Avatar>
                 <ButtonDropDown> Everyone {DOWN_ARROW} </ButtonDropDown>
                 <TextBox name="name" placeholder="What's Happening?" />

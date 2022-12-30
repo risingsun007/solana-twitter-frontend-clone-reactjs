@@ -2,7 +2,7 @@
   "name": "twitter-clone-reactjs",
   "version": "0.1.0",
   "private": true,
-  "engine": {
+  "engines": {
     "node": ">=16.16.0 <16.16.1"
   },
   "dependencies": {

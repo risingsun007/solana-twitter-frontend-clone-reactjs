@@ -136,3 +136,27 @@ export const Followage = styled.div`
     }
   }
 `;
+
+export const ConnectButton = styled.button`
+  padding: 7px;
+  border-radius: 25px;
+  border-style: none;
+  border-width: 1px;
+  background-image: linear-gradient(to right, #84fab0 0%, #a6c1ee 51%, #fbc2eb 100%);
+
+  font-weight: bold;
+  font-size: 15px;
+
+  cursor: pointer;
+  outline: 0;
+
+  top: 50%;
+  left: 50%;
+
+  &:hover {
+    background: var(--twitter-dark-hover);
+  }
+
+  grid-column: 4 ;
+  grid-row: 5;
+`

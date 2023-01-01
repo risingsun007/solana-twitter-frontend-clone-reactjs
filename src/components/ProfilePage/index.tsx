@@ -12,7 +12,9 @@ import {
   LocationIcon,
   CakeIcon,
   Followage,
+  ConnectButton,
 } from './styles';
+import { AnyAaaaRecord } from 'dns';
 
 type PhantomEvent = "disconnect" | "connect" | "accountChanged";
 
@@ -33,34 +35,50 @@ type WindowWithSolana = Window & {
 }
 
 const ProfilePage: React.FC = () => {
-  const [pubKey, setPubKey] = useState('');
+  const [pubKey, setPubKey] = useState<string | undefined>('');
   const [provider, setProvider] = useState<PhantomProvider | null>(null);
+  const [doConnectWallet, setDoConnectWallet] = useState<boolean>(true);
+  const [phantom, setPhantom] = useState<any>(null);
+
+  const connectHandler: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    console.log("connectWalletzz");
+    if (phantom) {
+      phantom.connect().then(() => {
+        setPubKey(phantom?._publicKey?.toString())
+      });
+    } else {
+      console.log("no phantom");
+    }
+    return undefined;
+  }
 
   useEffect(() => {
+
     if ("solana" in window) {
       const solWindow = window as WindowWithSolana;
-      console.log(`solana in window`)
-      if (solWindow?.solana?.isPhantom) {
-        console.log(`Phanton in window`)
-        setProvider(solWindow.solana);
+
+      if (solWindow?.solana) {
+        setProvider(solWindow?.solana);
+        setPhantom(solWindow["solana"]);
+        console.log(`set phantom wallet`);
+
         const connectWallet = async () => {
           const solWindow = window as WindowWithSolana;
-          if (solWindow?.solana?.isPhantom){
-            await solWindow.solana.connect({ onlyIfTrusted: false });
-            console.log(`connect result: ${JSON.stringify(solWindow.solana, null, 2)})}`);
-           
-            setPubKey(solWindow?.solana?._publicKey?.toString() || "Not Connected");
+          if (solWindow?.solana?.isPhantom) {
+
+            if (solWindow?.solana?._publicKey?.toString() !== undefined) {
+              setPubKey(solWindow?.solana?._publicKey?.toString());
+            }
+            else {
+              const rtn = await solWindow.solana.connect({ onlyIfTrusted: false });
+              setPubKey(rtn.publicKey.toString());
+            }
           }
         }
-        connectWallet();
-        console.log(`solana window info: ${JSON.stringify(solWindow.solana, null, 2)})}`)
-        // Attemp an eager connection
-        solWindow.solana.connect({ onlyIfTrusted: false });
-      } else {
-        console.log(`Phanton NOT in window`)
       }
     } else {
       console.log(`solana not in window`)
+
     }
 
   }, []);
@@ -79,7 +97,7 @@ const ProfilePage: React.FC = () => {
       <ProfileData>
         <EditButton outlined>Set up profile</EditButton>
 
-        <h1>{pubKey ? `Public Key: ${pubKey.slice(0,10)}...` : "TODO: Connect to Wallet Button"}</h1>
+        <h1>{pubKey ? `Public Key: ${pubKey.slice(0, 10)}...` : <ConnectButton onClick={connectHandler}> Connect Wallet </ConnectButton>}</h1>
         <h2>TODO associated name @...</h2>
 
         <p>

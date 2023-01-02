@@ -1,7 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
+import Router from 'next/router';
 
-import Layout from '../components/Layout';
+import Home from './home';
 import GlobalStyles from '../styles/GlobalStyles';
 import { getTweets } from '../api/SolanaWeb3';
 
@@ -14,10 +15,7 @@ function App() {
         <title>Solana Twitter</title>
         <meta name="description" content="Solana Twitter" />
     </Head>
-      <GlobalStyles />
-      <Layout />
-    
-      
+    <Home/>  
     </>
   );
 }

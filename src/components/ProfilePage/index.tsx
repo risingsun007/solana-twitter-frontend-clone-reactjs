@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PublicKey } from "@solana/web3.js";
+import Button from '../Button';
 
 import Feed from '../Feed';
 
@@ -97,7 +98,7 @@ const ProfilePage: React.FC = () => {
       <ProfileData>
         <EditButton outlined>Set up profile</EditButton>
 
-        <h1>{pubKey ? `Public Key: ${pubKey.slice(0, 10)}...` : <ConnectButton onClick={connectHandler}> Connect Wallet </ConnectButton>}</h1>
+        <h1>{pubKey ? `Public Key: ${pubKey.slice(0, 10)}...` : <Button onClick={connectHandler}> Connect Wallet </Button>}</h1>
         <h2>TODO associated name @...</h2>
 
         <p>

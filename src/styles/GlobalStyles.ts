@@ -64,13 +64,18 @@ export default createGlobalStyle`
       color: black;
     } 
   }
-  
-  .zzzz {
-    background: green,
-    height: '10%',
-    width: '10%',
-  
-  }
+
+  a:link { text-decoration: none; }
+
+  a:visited { text-decoration: none; }
+
+  a:hover { text-decoration: none; }
+
+  a:active { text-decoration: none; }
+
+
+
+
 
   .modal2 {
     display: none; /* Hidden by default */

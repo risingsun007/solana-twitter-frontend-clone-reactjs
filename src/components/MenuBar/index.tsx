@@ -3,6 +3,9 @@ import { AlternateEmail } from 'styled-icons/material-outlined';
 import Modal from 'react-modal';
 import Button from '../Button';
 import NewTweet from '../NewTweet';
+import Link from 'next/link'
+import { useRouter } from 'next/router';
+import { createElement } from 'react';
 
 import {
   Container,
@@ -21,55 +24,48 @@ import {
   ProfileData,
   ExitIcon,
 } from './styles';
+import Home from '../../pages/home';
+import JSXStyle from 'styled-jsx/style';
 
 const MenuBar: React.FC = () => {
   let [showNewTweet, setShowNewTweet] = useState(false);
+  const router = useRouter();
+  const elements = [
+    { icon: <HomeIcon />, text: 'home' },
+    { icon: <ExploreIcon />, text: 'explore' },
+    { icon: <BellIcon />, text: 'notifications' },
+    { icon: <EmailIcon />, text: 'messages' },
+    { icon: <FavoriteIcon />, text: 'bookmarks' },
+    { icon: <ListIcon />, text: 'lists' },
+    { icon: <ProfileIcon />, text: 'profile' }
+  ];
+
+  const navitems = elements.map((arr) => {
+    const { icon, text } = arr;
+    return (   
+        <Link href={'/' + text}>
+          <MenuButton className={router.pathname === '/' + text ? "active" : ""}>
+            {icon}
+            <span>{text}</span>
+          </MenuButton>
+        </Link>
+    );
+  });
+
+  const NewTweetModal = () => (
+    showNewTweet ?
+      <NewTweet onClick={() => { setShowNewTweet(false) }} message="hellodkdk" showNewTweet={showNewTweet} />
+      : ''
+  );
+
   return (
     <Container>
       <Topside>
         <Logo />
-
-        <MenuButton>
-          <HomeIcon />
-          <span>Home</span>
-        </MenuButton>
-
-        <MenuButton>
-          <ExploreIcon />
-          <span>Explore</span>
-        </MenuButton>
-
-        <MenuButton>
-          <BellIcon />
-          <span>Notifications</span>
-        </MenuButton>
-
-        <MenuButton>
-          <EmailIcon />
-          <span>Messages</span>
-        </MenuButton>
-
-        <MenuButton>
-          <FavoriteIcon />
-          <span>Bookmarks</span>
-        </MenuButton>
-
-        <MenuButton>
-          <ListIcon />
-          <span>Lists</span>
-        </MenuButton>
-
-        <MenuButton className="active">
-          <ProfileIcon />
-          <span>Profile</span>
-        </MenuButton>
-        {
-          showNewTweet ?
-            <NewTweet onClick={() => { setShowNewTweet(false) }} message="hellodkdk" showNewTweet={showNewTweet} />
-            : ''
-        }
-        <Button onClick={() => { setShowNewTweet(true) }}>
-          <span>Tweet</span>
+        {navitems}
+        {NewTweetModal()}
+        <Button width="100%" onClick={() => { setShowNewTweet(true) }}>
+          Tweet
         </Button>
       </Topside>
     </Container>

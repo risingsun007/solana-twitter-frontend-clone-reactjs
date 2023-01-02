@@ -6,12 +6,16 @@ import SideBar from '../SideBar';
 
 import { Container, Wrapper } from './styles';
 
-const Layout: React.FC = () => {
+export interface LayoutProps {
+  children: React.ReactNode;
+};
+
+const Layout: React.FC<LayoutProps> = (props) => {
   return (
     <Container>
       <Wrapper>
         <MenuBar />
-        <Main />
+       {props.children}
         <SideBar />
       </Wrapper>
     </Container>

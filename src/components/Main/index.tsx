@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ProfilePage from '../ProfilePage';
+import Link from 'next/link';
 
 import {
   Container,
@@ -18,9 +19,11 @@ const Main: React.FC = () => {
   return (
     <Container>
       <Header>
+        <Link href="/home">
         <button>
           <BackIcon />
         </button>
+        </Link>
 
         <ProfileInfo>
           <strong>Default Person's Name</strong>

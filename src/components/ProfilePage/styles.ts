@@ -17,13 +17,29 @@ export const Container = styled.div`
   }
 `;
 
-export const Banner = styled.div`
-  flex-shrink: 0;
+export const ContainerSameLine = styled.div`
+  display: flex;
+  flex-direction: row;
 
+  max-height: 100%;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+interface BannerProps{
+  imageUrl?: string;
+}
+
+export const Banner = styled.div<BannerProps>`
+  flex-shrink: 0;
+  background: grey;
   width: 100%;
   height: min(33vw, 199px);
-  background-image: url('https://1.bp.blogspot.com/-lg73Nw76yCc/V9_EnSSngLI/AAAAAAAAWxY/bQtB8s4wWPsvzsac3xZYbP--23d-KugzwCLcB/s1600/StarCIO%2BLess%2BCode.jpg');
-
+  background-image: ${(props) => (props.imageUrl ? 'url(props.imageUrl' : '')};
   position: relative;
 `;
 
@@ -108,6 +124,23 @@ export const EditButton = styled(Button)`
     font-size: 15px;
   }
 `;
+
+export const ConnectButton2 = styled(Button)`
+  position: absolute;
+  top: 2vw;
+  left: 7px;
+
+  padding: 4px 16px;
+  font-size: 13px;
+
+  @media (min-width: 320px) {
+    top: 10px;
+    padding: 10px 19px;
+    font-size: 15px;
+  }
+`;
+
+
 
 const iconCSS = css`
   width: 20px;

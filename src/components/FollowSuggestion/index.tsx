@@ -12,7 +12,7 @@ const FollowSuggestion: React.FC<Props> = ({ name, nickname }) => {
     <Container>
       <div>
         <Avatar>
-          <img src={require('../../assets/avatar.png')} alt="Avatar" />
+          <img src='../../avatar.png' alt="" />
         </Avatar>
 
         <Info>

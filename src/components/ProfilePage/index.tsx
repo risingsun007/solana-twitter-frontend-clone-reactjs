@@ -6,6 +6,7 @@ import Feed from '../Feed';
 
 import {
   Container,
+  ContainerSameLine,
   Banner,
   Avatar,
   ProfileData,
@@ -13,7 +14,7 @@ import {
   LocationIcon,
   CakeIcon,
   Followage,
-  ConnectButton,
+  ConnectButton2,
 } from './styles';
 import { AnyAaaaRecord } from 'dns';
 
@@ -96,9 +97,10 @@ const ProfilePage: React.FC = () => {
       </Banner>
 
       <ProfileData>
-        <EditButton outlined>Set up profile</EditButton>
-
-        <h1>{pubKey ? `Public Key: ${pubKey.slice(0, 10)}...` : <Button onClick={connectHandler}> Connect Wallet </Button>}</h1>
+        <ContainerSameLine>
+          <EditButton outlined>Set up profile</EditButton>
+          <h1>{pubKey ? `Public Key: ${pubKey.slice(0, 10)}...` : <ConnectButton2 onClick={connectHandler} outlined="true"> Connect Wallet </ConnectButton2>}</h1>
+        </ContainerSameLine>
         <h2>TODO associated name @...</h2>
 
         <p>

@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
 import Modal from 'react-modal';
+import { MiniProgram } from 'styled-icons/remix-fill';
 
 export const Container2 = styled.div`
     display: grid;
     width: min(601px, 100%);
-    grid-template-columns:  12fr 31fr 50fr 1fr;
+    grid-template-columns:  12fr 31fr 50fr 6fr;
     grid-template-rows: 5fr 8fr 10fr 5fr 4fr;
 `
 
@@ -115,7 +116,7 @@ export const customStyles : Modal.Styles = {
       top: '5%',
       margin: 'auto',
       bottom: 'auto',
-      width: '    40%',
+      width: 'min(40%, 600px)',
       height: '275px',
       borderRadius: '20px',
       outline: '0px',

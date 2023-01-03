@@ -22,8 +22,6 @@ export const Container = styled.div`
 export const Header = styled.div`
   position: sticky;
   top: 0;
-  background: var(--primary);
-
   display: flex;
   align-items: center;
 
@@ -59,12 +57,10 @@ export const ProfileInfo = styled.div`
   flex-direction: column;
 
   > strong {
-    font-size: 19px;
   }
 
   > span {
     font-size: 15px;
-    color: var(--gray);
   }
 `;
 

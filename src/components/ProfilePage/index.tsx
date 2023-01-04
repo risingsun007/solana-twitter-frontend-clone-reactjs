@@ -99,7 +99,7 @@ const ProfilePage: React.FC = () => {
       <ProfileData>
         <ContainerSameLine>
           <EditButton outlined>Set up profile</EditButton>
-          <h1>{pubKey ? `Public Key: ${pubKey.slice(0, 10)}...` : <ConnectButton2 onClick={connectHandler} outlined="true"> Connect Wallet </ConnectButton2>}</h1>
+          <h1>{pubKey ? `Public Key: ${pubKey.slice(0, 10)}...` : <ConnectButton2 onClick={connectHandler}> Connect Wallet </ConnectButton2>}</h1>
         </ContainerSameLine>
         <h2>TODO associated name @...</h2>
 

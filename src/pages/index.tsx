@@ -14,6 +14,7 @@ function App() {
     <Head>
         <title>Solana Twitter</title>
         <meta name="description" content="Solana Twitter" />
+        <link rel="icon" href="/images/favicon.ico" />
     </Head>
     <Home/>  
     </>

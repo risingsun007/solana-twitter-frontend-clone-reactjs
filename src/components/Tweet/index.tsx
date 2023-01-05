@@ -36,18 +36,11 @@ const Tweet: React.FC<PropsType> = () => {
   useEffect(() => {
 
     const fetchData = async () => {
-      console.log("getTweets() is about to be called");
+      console.log("requesting tweets from Solana Blockchain");
       const result = await getTweets();
-      console.log("before set data")
-      console.log(JSON.stringify(result[0], null, 2));
-      let zz = [result[0]];
-      console.log("zz is: " + JSON.stringify(zz, null, 2));
-
-      console.log(`${typeof (zz)}`)
-
+      console.log("got here at Tweet aa");
+      console.log(`${result.length ? result[0].author: "no data"}`)
       setData(result);
-      console.log("after set data")
-
     };
     fetchData();
   }, []);
@@ -67,7 +60,7 @@ const Tweet: React.FC<PropsType> = () => {
 
           <Body>
             <Avatar>
-              <img src={user.avatar} alt={user.author} />
+              <img src={"../../avatar.png"} alt={user.author} />
             </Avatar>
 
             <Content>

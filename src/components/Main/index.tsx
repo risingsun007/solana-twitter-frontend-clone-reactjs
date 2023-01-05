@@ -18,20 +18,8 @@ import {
 const Main: React.FC = () => {
   return (
     <Container>
-      <Header>
-        <Link href="/home">
-        <button>
-          <BackIcon />
-        </button>
-        </Link>
 
-        <ProfileInfo>
-          <strong>Default Person's Name</strong>
-          <span>432 Tweets</span>
-        </ProfileInfo>
-      </Header>
-
-      <ProfilePage />
+      <ProfilePage/>
 
       <BottomMenu>
         <HomeIcon className="active" />

@@ -46,7 +46,7 @@ const MenuBar: React.FC = () => {
         <Link href={'/' + text}>
           <MenuButton className={router.pathname === '/' + text ? "active" : ""}>
             {icon}
-            <span>{text}</span>
+            {text[0].toUpperCase() + text.slice(1)}
           </MenuButton>
         </Link>
     );

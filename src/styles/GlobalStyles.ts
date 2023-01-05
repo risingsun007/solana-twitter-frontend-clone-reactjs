@@ -142,6 +142,7 @@ export default createGlobalStyle`
     --twitter: #33a1f2;
     --twitter-dark-hover: #011017;
     --twitter-light-hover: #2c8ed6;
+    --twitter-grey-hover: #0F14191A;
     --backColorScheme: #000;
     --modelOutlay: rgba(0, 0, 0, .4);
   }

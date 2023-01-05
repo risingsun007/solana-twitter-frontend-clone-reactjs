@@ -37,8 +37,6 @@ import { Data } from 'styled-icons/boxicons-regular';
 
 
 export async function getTweets(): Promise<UserType[]> {
-  console.log("got here")
-  console.log("got zzzzz");
   const PUBLIC_KEY = "GxgudfRVS2fdXJ2LWEXCg7y8HUH531xNHMn4hviF77Zh"
 
   const programId = new web3.PublicKey("GxgudfRVS2fdXJ2LWEXCg7y8HUH531xNHMn4hviF77Zh");
@@ -47,22 +45,24 @@ export async function getTweets(): Promise<UserType[]> {
   const program = new Program(tweetIdl as any, programId);
   const connection = new Connection(clusterApiUrl('devnet'), 'confirmed')
   const tweets = await program.account.tweet.all();
+  console.log(`${JSON.stringify(tweets)}`)
   console.log(`requested data from solana network, num tweets: ${tweets.length}`)
-  const tweetsFormatted: UserType[]  = tweets.map((tweet) => {
-    let data = tweet.account as any;
-    return {
-      avatar: "http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/debris3_brown.png",
-      author: String(tweet.publicKey),
-      twitteruser: "twitteruser ZZZ",
-      posttime: "2011-11-18T14:54:39.929",
-      posttext: data.message,
-      likecount: 0
-    }}, []);
-    
-  //console.log(`tweets: ${JSON.stringify(tweets, null, 2)})}`);
- // console.log(`tweets Formatted: ${JSON.stringify(tweetsFormatted, null, 2)}`);
-  return tweetsFormatted;
+  const tweetsFormatted: UserType[] = tweets
+    .filter(tweet => (tweet.account as any).message.length > 0)
+    .map((tweet) => {
+      let data = tweet.account as any;
+      console.log("formatting Tweet")
+      return {
+        avatar: "http://commondatastorage.googleapis.com/codeskulptor-assets/lathrop/debris3_brown.png",
+        author: String(data.creator),
+        twitteruser: "twitteruser ZZZ",
+        posttime: "2011-11-18T14:54:39.929",
+        posttext: data.message,
+        likecount: 0
+      }
+    }, []);
 
+  return tweetsFormatted;
 }
 
 

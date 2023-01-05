@@ -52,7 +52,7 @@ const NewTweet: React.FC<NewTweetProps> = (props) => {
     const [copied, setCopied] = useState(false);
     console.log(`nnn: ${JSON.stringify(props.message, null, 2)}`)
     let walletAddress = "";
-
+    const doShowReceipient = false;
     async function connect_to_wallet() {
         const solWindow = window as WindowWithSolana;
         if (solWindow?.solana?.isPhantom)
@@ -87,7 +87,10 @@ const NewTweet: React.FC<NewTweetProps> = (props) => {
                 <Avatar>
                     <img src="../../avatar.png" alt="Avatar" />
                 </Avatar>
-                <ButtonDropDown> Everyone {DOWN_ARROW} </ButtonDropDown>
+                {doShowReceipient ? 
+                  <ButtonDropDown> Everyone {DOWN_ARROW} </ButtonDropDown>
+                :
+                ""}
                 <TextBox name="name" placeholder="What's Happening?" />
                 <TweetButton onClick={() => { console.log("click close button handler button"); props.onClick() }}>
                     Tweet</TweetButton>

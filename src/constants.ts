@@ -9,6 +9,7 @@ export interface UserType {
     commentscount?: number;
     retweetscount?: number;
     likecount: number;
-}
+    creator?: string;
+  }
 
 

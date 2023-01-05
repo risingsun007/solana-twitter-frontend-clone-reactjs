@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { LocationOn, Cake } from '../../styles/Icons';
+import { LocationOn, Cake, ArrowLeft } from '../../styles/Icons';
 
 import Button from '../Button';
 
@@ -33,6 +33,46 @@ export const ContainerSameLine = styled.div`
 interface BannerProps{
   imageUrl?: string;
 }
+
+export const Header = styled.div`
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+
+  text-align: left;
+
+  padding: 8px 0 9px 13px;
+  border-bottom: 1px solid var(--outline);
+
+  > button {
+    padding: 8px;
+    border-radius: 50%;
+
+    outline: 0;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--twitter-dark-hover);
+    }
+  }
+`;
+
+
+export const ProfileInfo = styled.div`
+  margin-left: 17px;
+
+  display: flex;
+  flex-direction: column;
+
+  > strong {
+  }
+
+  > span {
+    font-size: 15px;
+  }
+`;
+
 
 export const Banner = styled.div<BannerProps>`
   flex-shrink: 0;
@@ -140,6 +180,12 @@ export const ConnectButton2 = styled(Button)`
   }
 `;
 
+export const BackIcon = styled(ArrowLeft)`
+  width: 24px;
+  height: 24px;
+
+  fill: var(--twitter);
+`;
 
 
 const iconCSS = css`

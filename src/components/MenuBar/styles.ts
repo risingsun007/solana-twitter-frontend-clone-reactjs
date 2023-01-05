@@ -104,7 +104,7 @@ export const MenuButton = styled.button`
   border-radius: 25px;
 
   &:hover {
-    background: var(--twitter-dark-hover);
+    background: var(--twitter-grey-hover);
   }
 
   &:hover,
@@ -119,10 +119,9 @@ export const MenuButton = styled.button`
 
 const iconCSS = css`
   flex-shrink: 0;
-
   width: 30px;
   height: 30px;
-  color: var(--white);
+  background-color: transparent;
 `;
 
 export const HomeIcon = styled(Home)`

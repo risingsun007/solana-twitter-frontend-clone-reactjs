@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PublicKey } from "@solana/web3.js";
 import Button from '../Button';
+import Link from 'next/link';
 
 import Feed from '../Feed';
 
@@ -15,6 +16,9 @@ import {
   CakeIcon,
   Followage,
   ConnectButton2,
+  Header,
+  BackIcon, 
+  ProfileInfo,
 } from './styles';
 import { AnyAaaaRecord } from 'dns';
 
@@ -87,6 +91,20 @@ const ProfilePage: React.FC = () => {
 
   return (
     <Container>
+
+       <Header>
+        <Link href="/home">
+          <button>
+            <BackIcon />
+          </button>
+        </Link>
+
+        <ProfileInfo>
+          <strong>Default Person's Name</strong>
+          <span>432 Tweets zzzz</span>
+        </ProfileInfo>
+      </Header>
+      
       <Banner>
         <Avatar>
           <img

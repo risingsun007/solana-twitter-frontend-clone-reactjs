@@ -24,7 +24,7 @@ export const Tab = styled.div`
   }
 `;
 
-export const Tweets = styled.div`
+export const TweetsContainer = styled.div`
   display: flex;
   flex-direction: column;
 

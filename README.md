@@ -22,8 +22,6 @@
 
 This project includes the Mobile First concept, so it is fully responsive. It is possible to interact by clicking on favorite tweets.</p>
 
-This repo was forked from https://github.com/eltonlazzarin/twitter-clone-reactjs
-
 ## 🚀 Technologies
 
 Technologies that I used to develop this frontend app

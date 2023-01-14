@@ -18,7 +18,6 @@ export const SearchWrapper = styled.div`
   width: min(399px, 100%);
   position: fixed;
   top: 0;
-  background: var(--primary);
   max-height: 57px;
 `;
 
@@ -28,10 +27,8 @@ export const SearchInput = styled.input`
   font-size: 14px;
   padding: 0 10px 0 52px;
   border-radius: 19.5px;
-  background: var(--search);
 
   &::placeholder {
-    color: var(--gray);
   }
 
   ~ svg {

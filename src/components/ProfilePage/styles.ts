@@ -7,7 +7,6 @@ import Button from '../Button';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-
   max-height: 100%;
   overflow-y: auto;
 
@@ -20,7 +19,6 @@ export const Container = styled.div`
 export const ContainerSameLine = styled.div`
   display: flex;
   flex-direction: row;
-
   max-height: 100%;
   overflow-y: auto;
 
@@ -100,7 +98,6 @@ export const Avatar = styled.div`
 
 export const ProfileData = styled.div`
   padding: min(calc(10vw + 7px), 67px) 16px 0;
-
   display: flex;
   flex-direction: column;
 
@@ -119,8 +116,6 @@ export const ProfileData = styled.div`
   > h2 {
     font-weight: normal;
     font-size: 15px;
-
-    color: var(--gray);
   }
 
   > p {
@@ -149,26 +144,14 @@ export const ProfileData = styled.div`
     }
   }
 `;
+interface Props{
+  rightJustified?: boolean;
+}
 
-export const EditButton = styled(Button)`
+export const Button2 = styled(Button)<Props>`
   position: absolute;
   top: 2vw;
-  right: 7px;
-
-  padding: 4px 16px;
-  font-size: 13px;
-
-  @media (min-width: 320px) {
-    top: 10px;
-    padding: 10px 19px;
-    font-size: 15px;
-  }
-`;
-
-export const ConnectButton2 = styled(Button)`
-  position: absolute;
-  top: 2vw;
-  left: 7px;
+  ${(props) => (props?.rightJustified ? 'right: 7px;' : 'left: 7px;')};
 
   padding: 4px 16px;
   font-size: 13px;

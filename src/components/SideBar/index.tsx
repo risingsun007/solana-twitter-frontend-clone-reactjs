@@ -16,6 +16,7 @@ import {
 const SideBar: React.FC = () => {
   return (
     <Container>
+      "djadsfkja;sdj"
       <SearchWrapper>
         <SearchInput placeholder="Search Twitter" />
         <SearchIcon />

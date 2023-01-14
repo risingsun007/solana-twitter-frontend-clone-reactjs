@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { PublicKey } from "@solana/web3.js";
-import Button from '../Button';
 import Link from 'next/link';
-
 import Feed from '../Feed';
-
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useWalletModal } from '@solana/wallet-adapter-react-ui';
+import  EditProfile  from '../EditProfile'
 import {
   Container,
   ContainerSameLine,
   Banner,
   Avatar,
   ProfileData,
-  EditButton,
   LocationIcon,
-  CakeIcon,
   Followage,
-  ConnectButton2,
+  Button2,
   Header,
-  BackIcon, 
+  BackIcon,
   ProfileInfo,
 } from './styles';
-import { AnyAaaaRecord } from 'dns';
+import  useProfile  from '../../hooks/useProfile';
 
 type PhantomEvent = "disconnect" | "connect" | "accountChanged";
 
@@ -41,58 +39,35 @@ type WindowWithSolana = Window & {
 }
 
 const ProfilePage: React.FC = () => {
-  const [pubKey, setPubKey] = useState<string | undefined>('');
-  const [provider, setProvider] = useState<PhantomProvider | null>(null);
-  const [doConnectWallet, setDoConnectWallet] = useState<boolean>(true);
-  const [phantom, setPhantom] = useState<any>(null);
+  const profileData = useProfile();
+  const { setVisible } = useWalletModal(); 
+  const { connected, publicKey } = useWallet();
+  const phantom = useRef<PhantomProvider | null>(null);
+  const [showEditProfile, setShowEditProfile] = useState<boolean>(false);
 
   const connectHandler: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    console.log("connectWalletzz");
-    if (phantom) {
-      phantom.connect().then(() => {
-        setPubKey(phantom?._publicKey?.toString())
-      });
-    } else {
-      console.log("no phantom");
-    }
+    setVisible(true);
+    console.log(`connectWalletzz: ${connected}`);
     return undefined;
   }
+  
 
   useEffect(() => {
-
+    console.log("use effect called in ProfilePage")
+    const solWindow = window as WindowWithSolana;
     if ("solana" in window) {
-      const solWindow = window as WindowWithSolana;
-
       if (solWindow?.solana) {
-        setProvider(solWindow?.solana);
-        setPhantom(solWindow["solana"]);
-        console.log(`set phantom wallet`);
-
-        const connectWallet = async () => {
-          const solWindow = window as WindowWithSolana;
-          if (solWindow?.solana?.isPhantom) {
-
-            if (solWindow?.solana?._publicKey?.toString() !== undefined) {
-              setPubKey(solWindow?.solana?._publicKey?.toString());
-            }
-            else {
-              const rtn = await solWindow.solana.connect({ onlyIfTrusted: false });
-              setPubKey(rtn.publicKey.toString());
-            }
-          }
-        }
+        phantom.current = (solWindow["solana"]);
       }
     } else {
       console.log(`solana not in window`)
-
     }
-
   }, []);
 
   return (
     <Container>
 
-       <Header>
+      <Header>
         <Link href="/home">
           <button>
             <BackIcon />
@@ -100,15 +75,15 @@ const ProfilePage: React.FC = () => {
         </Link>
 
         <ProfileInfo>
-          <strong>Default Person's Name</strong>
+          <strong>{profileData?.profile?.name}</strong>
           <span>432 Tweets zzzz</span>
         </ProfileInfo>
       </Header>
-      
+
       <Banner>
         <Avatar>
           <img
-            src="../../avatar.png"
+            src={profileData?.profile?.avatarUrl || "../../avatar.png"}
             alt=""
           />
         </Avatar>
@@ -116,23 +91,19 @@ const ProfilePage: React.FC = () => {
 
       <ProfileData>
         <ContainerSameLine>
-          <EditButton outlined>Set up profile</EditButton>
-          <h1>{pubKey ? `Public Key: ${pubKey.slice(0, 10)}...` : <ConnectButton2 onClick={connectHandler}> Connect Wallet </ConnectButton2>}</h1>
+          <Button2 rightJustified onClick={ () =>(setShowEditProfile(true))}>Set up profile</Button2>
+            {
+            publicKey ? <Button2 onClick={connectHandler}> {publicKey?.toString().slice(0, 10)}...  </Button2> 
+            : phantom !== null ? <Button2 onClick={connectHandler}> Connect to Wallet </Button2>
+              :   <a href="https://phantom.app/"><Button2> Install Phanton Wallet </Button2></a> 
+            } 
         </ContainerSameLine>
-        <h2>TODO associated name @...</h2>
-
-        <p>
-          TODO: Insert BIO if available
-        </p>
-
+      <EditProfile onClick={() => { setShowEditProfile(false)}} showEditProfile2 = {showEditProfile}/>
+        <h2>{profileData?.profile?.name}</h2>
         <ul>
           <li>
             <LocationIcon />
-            TODO: Insert Location if available
-          </li>
-          <li>
-            <CakeIcon />
-            TODO: Insert Birthday if available
+            {profileData?.profile?.location}
           </li>
         </ul>
 
@@ -146,6 +117,7 @@ const ProfilePage: React.FC = () => {
           </span>
         </Followage>
       </ProfileData>
+      
 
       <Feed />
     </Container>

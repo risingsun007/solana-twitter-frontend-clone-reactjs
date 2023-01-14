@@ -17,23 +17,7 @@ export default createGlobalStyle`
     }
   
   }
-  .Modal {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    right: 40px;
-    bottom: 40px;
-    background-color: papayawhip;
-  }
-
-  .modal3 {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    right: 40px;
-    bottom: 40px;
-    background-color: papayawhip;
-  }
+ 
   .overlay {
   position: fixed;
   top: 0;
@@ -43,6 +27,53 @@ export default createGlobalStyle`
   background: rgba(0, 0, 0, 0.7);
   }
 
+  .WalletModalProvider{
+    background: yellow;
+    color: white;
+  }
+
+  .wallet-modal{
+    background: pink;
+    color: red;
+  }
+ 
+  .class1{
+    background: blue;
+    color: red;
+  }
+
+  .WalletMultiButton{
+    background: blue;
+    color: red; 
+  }
+
+  .wallet-adapter-modal-container{
+    position: fixed;
+    top: 20%;
+    left: 40%;
+    border-radius: 30px; 
+    border: 10px;
+    border-color: green;
+  }
+
+  .wallet-adapter-modal-wrapper{
+    border: 2px grey solid;
+    border-radius: 30px;  
+    padding: 15px;
+  }
+
+  .wallet-adapter-modal-fade-in{
+    background: red;
+  }
+
+  .wallet-adapter-modal-list{
+    color: green;
+    // TODO change model
+  }
+
+  .wallet-adapter-modal-title{
+    // TODO change model
+  }
   .modal {
     top: '5%',
     margin: 'auto',
@@ -134,7 +165,7 @@ export default createGlobalStyle`
     --primary: #000;
     --secondary: #15181c;
     --search: #202327;
-    --white: #d9d9d9;
+    --white: #ffffff;
     --gray: #7a7a7a;
     --outline: #2f3336;
     --retweet: #00c06b;

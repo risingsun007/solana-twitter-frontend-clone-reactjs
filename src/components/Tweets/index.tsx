@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { UserType } from '../../constants';
-import { getTweets } from '../../api/SolanaWeb3';
-import data2 from '../../data.json'
+import React, { useState } from 'react';
+import useTweets from '../../hooks/useTweets'
 
 import {
   Container,
@@ -20,34 +18,36 @@ import {
   RetweetIcon,
   LikeIcon,
 } from './styles';
-import { Zzz } from 'styled-icons/remix-fill';
 
 
-
-interface PropsType {
-  data?: Array<UserType>;
-}
-
-
-const Tweet: React.FC<PropsType> = () => {
+export default function Tweets(): JSX.Element {
   const [likeCounter, setLikeCounter] = useState(0);
-  const [data, setData] = useState<UserType[]>([]);
+  const tweetsInfo = useTweets();
+  console.log(`tweetsInfo: ${tweetsInfo}`)
+  function formatDate(t: number): string {
+    const minuteDiff = (Date.now() / 1000 - t) / 60;
+    const MIN_IN_DAY = 1400;
+    const MIN_IN_HR = 60;
+    const divisors = { 'd': MIN_IN_DAY, 'h': MIN_IN_HR, 'm': 1 };
+    let label: string;
 
-  useEffect(() => {
+    if (minuteDiff >= MIN_IN_DAY) {
+      label = 'd';
+    } else if (minuteDiff >= MIN_IN_HR) {
+      label = 'h';;
+    } else if (minuteDiff >= 1) {
+      label = 'm'
+    } else {
+      return `now`;
+    }
 
-    const fetchData = async () => {
-      console.log("requesting tweets from Solana Blockchain");
-      const result = await getTweets();
-      console.log("got here at Tweet aa");
-      console.log(`${result.length ? result[0].author: "no data"}`)
-      setData(result);
-    };
-    fetchData();
-  }, []);
+    return `${Math.round(minuteDiff / divisors[label as keyof typeof divisors])}${label}`;
+  }
 
   return (
     <>
-      {data.map((user, index) => (
+      { !!!tweetsInfo?.tweets ? <>Loading...</> :  
+      tweetsInfo.tweets.map((user, index) => (
         <Container key={index}>
           {user.retweet ? (
             <Retweeted>
@@ -60,15 +60,14 @@ const Tweet: React.FC<PropsType> = () => {
 
           <Body>
             <Avatar>
-              <img src={"../../avatar.png"} alt={user.author} />
+              <img src={user.avatar || "../../avatar.png"} alt={user.author} />
             </Avatar>
 
             <Content>
               <Header>
-                <strong>{user.author}</strong>
-                <span>{user.twitteruser}</span>
+                <strong>{user.authorName || user.author}</strong>
                 <Dot />
-                <time>{user.posttime}</time>
+                <time>{formatDate(user.posttime)}</time>
               </Header>
 
               <Description>{user.posttext}</Description>
@@ -103,4 +102,3 @@ const Tweet: React.FC<PropsType> = () => {
   );
 };
 
-export default Tweet;

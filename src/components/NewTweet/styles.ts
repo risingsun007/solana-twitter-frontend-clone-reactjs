@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import Modal from 'react-modal';
-import { MiniProgram } from 'styled-icons/remix-fill';
 
 export const Container2 = styled.div`
     display: grid;
@@ -20,8 +19,6 @@ outline: none;
   color: grey;
   font-weight: 500;
 }
-grid-column: 2 / span 3;
-grid-row: 3 /span 2;
 `;
 
 interface Props {

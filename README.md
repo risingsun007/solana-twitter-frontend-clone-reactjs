@@ -14,9 +14,6 @@
 
 ## 👨🏻‍💻 About the project
 
-<h1 align="center">
-	<img alt="Project Screenshots" src="https://github.com/eltonlazzarin/twitter-clone-reactjs/blob/master/screenshots/twitterclone.gif" />
-</h1>
 
 <p>Twitter Clone is a project developed in ReactJS in conjunction with TypeScript, where it shows an almost identical interface to the Twitter user profile page, as well as showing the tweets sent by them.
 
@@ -40,14 +37,6 @@ Technologies that I used to develop this frontend app
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://classic.yarnpkg.com/) or [npm](https://www.npmjs.com/)
 
-**Clone the project and access the folder**
-
-```bash
-$ git clone https://github.com/eltonlazzarin/twitter-clone-reactjs.git
-
-$ cd twitter-clone-reactjs
-```
-
 **Follow the steps below**
 
 ```bash
@@ -57,7 +46,3 @@ $ yarn
 # Run the web app
 $ yarn start
 ```
-
-## 📝 License
-
-This project is under the MIT license. See the [LICENSE](https://github.com/eltonlazzarin/twitter-clone-reactjs/blob/master/LICENSE) for more information.

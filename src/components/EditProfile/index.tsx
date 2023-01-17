@@ -23,7 +23,7 @@ interface EditProfileProps {
 }
 
 const EditProfile: React.FC<EditProfileProps> = (props) => {
-  const profileData = useProfile();
+  const profile = useProfile();
   const [name, setName] = useState<string | undefined>("");
   const [publicKey, setPublicKey] = useState<string | undefined>("");
   const [location, setLocation] = useState<string | undefined>("Metaverse");
@@ -33,11 +33,11 @@ const EditProfile: React.FC<EditProfileProps> = (props) => {
 
   useEffect(() => {
     setPublicKey(workspace?.wallet?.publicKey?.toString() || "");
-    setName(profileData?.profile?.name);
-    setAvatarUrl(profileData?.profile?.avatarUrl);
-    setLocation(profileData?.profile?.location);
+    setName(profile?.profileData?.name);
+    setAvatarUrl(profile?.profileData?.avatarUrl);
+    setLocation(profile?.profileData?.location);
     // TODO update name for profile context      
-  }, [workspace, profileData]);
+  }, [workspace, profile]);
 
   function onInput(event: React.ChangeEvent<HTMLInputElement>) {
     console.log(`x: ${event.target.id}`);
@@ -61,9 +61,9 @@ const EditProfile: React.FC<EditProfileProps> = (props) => {
   function updateProfileWeb3() {
     if(name){
       console.log("enter updateProfileWeb3")
-      profileData?.createProfile(name, avatarUrl || "", location || "");
+      profile?.updateProfile(name, avatarUrl || "", location || "");
     }
-    console.log(JSON.stringify(profileData));
+    console.log(JSON.stringify(profile?.profileData));
     console.log("leave updateProfileWeb3")
   }
   return (

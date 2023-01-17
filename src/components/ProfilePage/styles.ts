@@ -216,7 +216,7 @@ export const ConnectButton = styled.button`
   left: 50%;
 
   &:hover {
-    background: var(--twitter-dark-hover);
+    opacity: .9;
   }
 
   grid-column: 4 ;

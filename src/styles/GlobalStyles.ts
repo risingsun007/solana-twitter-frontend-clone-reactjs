@@ -104,10 +104,6 @@ export default createGlobalStyle`
 
   a:active { text-decoration: none; }
 
-
-
-
-
   .modal2 {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

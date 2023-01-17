@@ -2,22 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { Chat, Retweet, Favorite } from '../../styles/Icons';
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  padding: 14px 16px;
-
-  border-bottom: 1px solid var(--outline);
-
-  max-width: 100%;
-
-  cursor: pointer;
-
-  &:hover {
-    background: var(--twitter-dark-hover);
-  }
-`;
+ const hoverStyle = ""
 
 export const Retweeted = styled.div`
   display: flex;
@@ -26,6 +11,7 @@ export const Retweeted = styled.div`
   font-size: 13px;
   color: var(--gray);
 `;
+
 
 export const RocketseatIcon = styled(Retweet)`
   width: 16px;
@@ -103,6 +89,7 @@ export const Dot = styled.div`
 export const Description = styled.p`
   font-size: 14px;
   margin-top: 4px;
+
 `;
 
 export const ImageContent = styled.div`
@@ -110,7 +97,7 @@ export const ImageContent = styled.div`
     margin-top: 12px;
     width: 100%;
     height: min(285px, max(175px, 41vw));
-
+    
     background: var(--outline);
     border-radius: 14px;
   }
@@ -174,6 +161,7 @@ export const Status = styled.div`
 const iconCSS = css`
   width: 19px;
   height: 19px;
+
 `;
 
 export const CommentIcon = styled(Chat)`
@@ -186,4 +174,24 @@ export const RetweetIcon = styled(Retweet)`
 
 export const LikeIcon = styled(Favorite)`
   ${iconCSS}
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  padding: 14px 16px;
+
+  border-bottom: 1px solid var(--outline);
+
+  max-width: 100%;
+
+  cursor: pointer;
+
+  &:hover, &:hover  *
+  {
+    @media (prefers-color-scheme: light) {
+      background: #f5f3ed;
+    }
+  } 
 `;

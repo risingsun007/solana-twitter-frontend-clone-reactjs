@@ -1,7 +1,6 @@
 
 import styled, { css } from 'styled-components';
 import Modal from 'react-modal';
-import { Close } from '@styled-icons/evil/'
 import { ArrowLeft } from '../../styles/Icons'
 import Button from '../Button'
 import React from 'react'
@@ -45,7 +44,7 @@ export const customStyles : Modal.Styles = {
       top: '5%',
       margin: 'auto',
       bottom: 'auto',
-      width: 'min(80%, 601px)',
+      width: 'min(100%, 601px)',
       height: '370px',
       borderRadius: '20px',
       outline: '0px',
@@ -62,7 +61,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>{
 
 export const InputGroup = styled.div`
   position: relative;
-  width: 'min(90%, 601px)';
+  width: min(80%, 800);
 `;
 
 export const InputLabel = styled.label`
@@ -76,7 +75,7 @@ export const InputLabel = styled.label`
   font-family: American GT;
   font-size: 15px;
   padding: 0px 8px;
-  width: 'min(80%, 601px)';
+  width: min(80%, 800px);
   
 
 `;
@@ -89,15 +88,13 @@ export const InputField = styled.input`
   border-radius: 5px;
   height: 60px;
   font-size: 18px;
-  width: 'min(80%, 601px)';
+  width: min(80%, 800px);
 
   &:focus
   {
     
     border: 2px solid var(--twitter);
   }
-
-  
 
   &:focus + ${InputLabel}
   {

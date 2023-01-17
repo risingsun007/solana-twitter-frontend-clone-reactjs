@@ -8,7 +8,7 @@ interface Props {
 export default styled.button<Props>`
   background: ${(props) => (props.outlined ? 'transparent' : 'var(--twitter)')};
   color: ${(props) => (props.outlined ? 'var(--twitter)' : 'var(--white)')};
-  border: ${(props) => (props.outlined ? '1px solid var(--twitter)' : 'none')};
+  border: ${(props) => (props.outlined ? '1px solid var(--twitter)' : '1px solid var(--twitter)')};
   width: ${(props) => props?.width};
   padding: 16px;
   border-radius: 25px;
@@ -19,9 +19,6 @@ export default styled.button<Props>`
   outline: 0;
 
   &:hover {
-    background: ${(props) =>
-      props.outlined
-        ? 'var(--twitter-dark-hover)'
-        : 'var(--twitter-hover-light)'};
+    opacity: .9;
   }
 `;

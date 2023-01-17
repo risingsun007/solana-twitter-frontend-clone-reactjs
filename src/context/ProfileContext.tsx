@@ -3,35 +3,26 @@ import { useWallet } from '@solana/wallet-adapter-react';
 
 import useWorkspace from '../hooks/useWorkspace';
 import { getProfile, createProfile } from '../api';
-import { Profile } from '../models'
+import { Profile, ProfileData } from '../models'
 
-export interface ProfileContextOutput {
-    loaded: boolean,
-    profile: Profile | null,
-    createProfile: (name: string, avatarUrl: any, location: any) => void
-}
-
-const ProfileContext = React.createContext<ProfileContextOutput | null>(null);
+const ProfileContext = React.createContext<Profile | null>(null);
 
 export function ProfileProvider<React>({ children }: any) {
     const [loaded, setLoaded] = useState(false);
-
-    const [profile, setProfile] = useState<Profile | null >(null);
-
+    const [profileData, setProfileData] = useState<ProfileData | null >(null);
     const workspace = useWorkspace();
 
-    // Update profile on workspace changes.
     const { publicKey } = useWallet();
     useEffect(() => {
         const updateProfile = async () => {
             if(publicKey){
-                setProfile(await getProfile(workspace.program, publicKey));
+              setProfileData(await getProfile(workspace.program, publicKey));
                 setLoaded(true);
             }
         };
 
         const clearProfile = () => {
-            setProfile(null);
+          setProfileData(null);
         };
 
         if (publicKey) {
@@ -44,20 +35,18 @@ export function ProfileProvider<React>({ children }: any) {
     const createProfileAndUpdate = useCallback(
         async (name: string, avatarUrl: string, location: string) => {
             const newProfile = await createProfile(workspace, name, avatarUrl, location);
-            console.log(`createProfileAndUpdate: ${newProfile}`)
-            setProfile(newProfile);
-            console.log(`createProfileAndUpdate after: ${profile}`)
+            setProfileData(newProfile);
         },
-        [workspace, profile],
+        [workspace, profileData],
     );
 
     const value = useMemo(
         () => ({
-            loaded,
-            profile,
-            createProfile: createProfileAndUpdate,
+          profileData,
+          updateProfile: createProfileAndUpdate,
+          loaded,
         }),
-        [loaded, profile, createProfileAndUpdate],
+        [loaded, profileData, createProfileAndUpdate],
     );
 
     return (

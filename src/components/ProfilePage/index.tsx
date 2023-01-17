@@ -39,7 +39,7 @@ type WindowWithSolana = Window & {
 }
 
 const ProfilePage: React.FC = () => {
-  const profileData = useProfile();
+  const profile = useProfile();
   const { setVisible } = useWalletModal(); 
   const { connected, publicKey } = useWallet();
   const phantom = useRef<PhantomProvider | null>(null);
@@ -75,7 +75,7 @@ const ProfilePage: React.FC = () => {
         </Link>
 
         <ProfileInfo>
-          <strong>{profileData?.profile?.name}</strong>
+          <strong>{profile?.profileData?.name}</strong>
           <span>432 Tweets zzzz</span>
         </ProfileInfo>
       </Header>
@@ -83,7 +83,7 @@ const ProfilePage: React.FC = () => {
       <Banner>
         <Avatar>
           <img
-            src={profileData?.profile?.avatarUrl || "../../avatar.png"}
+            src={profile?.profileData?.avatarUrl || "../../avatar.png"}
             alt=""
           />
         </Avatar>
@@ -99,11 +99,11 @@ const ProfilePage: React.FC = () => {
             } 
         </ContainerSameLine>
       <EditProfile onClick={() => { setShowEditProfile(false)}} showEditProfile2 = {showEditProfile}/>
-        <h2>{profileData?.profile?.name}</h2>
+        <h2>{profile?.profileData?.name}</h2>
         <ul>
           <li>
             <LocationIcon />
-            {profileData?.profile?.location}
+            {profile?.profileData?.location}
           </li>
         </ul>
 

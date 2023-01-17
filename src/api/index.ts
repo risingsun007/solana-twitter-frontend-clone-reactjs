@@ -10,7 +10,7 @@ import {
 } from '@solana/web3.js'
 
 import tweetIdl from '../idl/tweet.json'
-import { Tweet, Profile } from '../models';
+import { Tweet, ProfileData } from '../models';
 import { AnchorWallet } from '@solana/wallet-adapter-react';
 const programId = new web3.PublicKey("38Skw71m45pWoVV9LjRy1atkPyhwk8eW6zifmUKXxbga");
 
@@ -88,7 +88,7 @@ const getProfilePDA = (program: Program<Idl>, ownerPublicKey: PublicKey): any =>
 const getCacheKey = ([workspace, ...args]: any) =>
   JSON.stringify([workspace.program?.programId, ...args]);
 
-export async function getProfile(program: Program<Idl>, ownerPublicKey: PublicKey): Promise<Profile | null> {
+export async function getProfile(program: Program<Idl>, ownerPublicKey: PublicKey): Promise<ProfileData | null> {
   if (!program || !ownerPublicKey) {
     console.log(`no program or ownerpublickey: ${ownerPublicKey}, program: ${program}`)
     return null;
@@ -105,12 +105,12 @@ export async function getProfile(program: Program<Idl>, ownerPublicKey: PublicKe
   if (!profileAccount) {
     return null;
   }
-  return profileAccount as unknown as Profile;
+  return profileAccount as unknown as ProfileData;
 }
 
 
 
-export const createProfile = async ({ wallet }: any, name: string, avatarUrl: string, location: string): Promise<Profile> => {
+export const createProfile = async ({ wallet }: any, name: string, avatarUrl: string, location: string): Promise<ProfileData> => {
   const commitment = "processed";
   const provider1 = new AnchorProvider(new Connection("https://api.devnet.solana.com"),
     wallet, { commitment, preflightCommitment: commitment });
@@ -127,7 +127,7 @@ export const createProfile = async ({ wallet }: any, name: string, avatarUrl: st
   });
 
   const PDAAccount = await program.account.profile.fetch(PDAKey);
-  return PDAAccount as Profile
+  return PDAAccount as ProfileData
 };
 
 
